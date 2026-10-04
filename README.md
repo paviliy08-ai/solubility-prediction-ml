@@ -1,2 +1,25 @@
-# solubility-prediction-ml
-Molecular Solubility Prediction (ESOL) using RDKit descriptors, Morgan fingerprints, LightGBM, LSTM and Ensemble methods.
+# Molecular Solubility Prediction (ESOL)
+
+Проект по предсказанию водорастворимости химических соединений (log solubility) на основе их SMILES-структур.
+
+## Данные
+Используется датасет Delaney (ESOL). Данные находятся в папке `data/`.
+
+## Методы и модели
+1. **Feature Engineering:** 
+   - Моргановские фингерпринты (1024 бита)
+   - 4 физико-химических дескриптора (MW, LogP, HBD, HBA)
+   - Токенизация SMILES для нейросетей
+2. **Модели:**
+   - Lasso-регрессия (L1 регуляризация)
+   - LightGBM (градиентный бустинг)
+   - LSTM (нейронная сеть на TensorFlow/Keras)
+   - Ансамбль (взвешенное усреднение LightGBM и LSTM)
+
+## Результаты на тестовой выборке
+| Модель | RMSE | R² |
+| :--- | :--- | :--- |
+| Lasso | 0.9339 | 0.8155 |
+| LightGBM | 0.6987 | 0.8967 |
+| LSTM | 0.7697 | 0.8747 |
+| **Ensemble (LGBM+LSTM)** | **0.6750** | **0.9036** |
